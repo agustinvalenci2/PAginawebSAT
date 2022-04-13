@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <title>Consultant Registration</title>
+</head>
+<body>
+    <div class="container">
+        <form action = "/reference/" method = "GET">
+        <img src="{% static '/image/Talent2AI Logo.png' %}" alt="" class="logo-image">
+        <div class="subtitle">
+            <h2>Education</h2>
+        </div>
+        <div class="education">
+            <div class="input-box">
+                <span class="details">Title</span>
+                <input type="text" placeholder="Enter Title" name="title" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Educational Institution</span>
+                <input type="text" placeholder="Enter Educational Institution" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Start date</span>
+                <input type="date" placeholder="Enter start date">
+            </div>
+            <div class="input-box">
+                <span class="details">End date/Estimated end date</span>
+                <input type="date" placeholder="Enter end date">
+            </div>
+            <div class="input-box">
+                <span class="details">Country</span>
+                <input type="text" placeholder="Enter country" required>
+            </div>
+            <div class="input-box">
+                <span class="details">State</span>
+                <input type="text" placeholder="Enter state" required>
+            </div>
+            <div class="input-box">
+                <span class="details">City</span>
+                <input type="text" placeholder="Enter city" required>
+            </div>
+        </div>
+        <br>
+        <div class="more">
+            <button type="button">Add one more education</button>
+            <button type="button">Remove one education</button>
+        </div>
+        <br>
+        <div class="button">
+            <input type="submit" name="next">
+        </div>
+    </form>
+    </div>   
+</body>
+</html>

@@ -18,5 +18,11 @@ from django.urls import path
 from Proyecto1.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('saludo/',saludo),
+    path('general/',general),
+    path('professional/',professional),
+    path('languages/',languages),
+    path('skills/',skills),
+    path('work/',work),
+    path('reference/',reference),
+    path('education/',education),
 ]

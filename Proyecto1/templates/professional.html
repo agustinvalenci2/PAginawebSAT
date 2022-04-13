@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <title>Consultant Registration</title>
+</head>
+<body>
+    <form action = "/skills/" method = "GET">
+    <div class="container">
+
+        <img src="{% static '/image/Talent2AI Logo.png' %}" alt="" class="logo-image">
+        <div class="subtitle">
+            <h2>Professional information</h2>
+        </div>
+        <div class="professional">
+            <div class="input-box">
+                <span class="details">Industry</span>
+                <input type="text" placeholder="Enter Industry" name ="industry">
+            </div>
+            <div class="input-box">
+                <span class="details">I'm a</span>
+                <input type="text" placeholder="Enter Role" name="role">
+            </div>
+            <div class="input-box">
+                <span class="details">Years of experience</span>
+                <input type="number" placeholder="Enter years" min="0" style="width: 90px;" name ="experience_years">
+            </div>
+        </div>
+        <div class="description">
+            <div class="input-box">
+                <!-- <span class="details">Description</span>
+                <input type="text" placeholder="Tell us about yourself" size="87" style="padding-bottom: 40px;"> -->
+                <label for="description">Description</label>
+                <textarea name="description" id="description" cols="100" rows="5" placeholder="Tell us about yourself"></textarea>
+            </div>
+        </div>
+        <div class="professional">
+            <div class="input-box">
+                <label for="remote_experience" class="details">Do you have experience working in remote?</label>
+                <select name="remote_experience" id="remote_experience">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <label for="type_of_job" class="details">Type of job</label>
+                <select name="type_of_job" id="type_of_job">
+                    <option value="Yes">Full-time</option>
+                    <option value="No">Part-time</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <span class="details">Rate</span>
+                <input type="number" placeholder="$" min="0" name ="rate">
+            </div>
+        </div>
+        <br>
+        <div class="button">
+            <input type="submit" name="boton" value ='next'>
+        </div>
+    </div>
+</form>
+</body>
+</html>

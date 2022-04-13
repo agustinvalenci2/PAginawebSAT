@@ -1,96 +1,26 @@
-
 from django.db import models
 
 
-class AuthGroup(models.Model):
-    name = models.CharField(unique=True, max_length=150)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group'
-
-
-class AuthGroupPermissions(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group_permissions'
-        unique_together = (('group', 'permission'),)
-
-
-class AuthPermission(models.Model):
-    name = models.CharField(max_length=255)
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
-    codename = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_permission'
-        unique_together = (('content_type', 'codename'),)
-
-
-class AuthUser(models.Model):
-    password = models.CharField(max_length=128)
-    last_login = models.DateTimeField(blank=True, null=True)
-    is_superuser = models.IntegerField()
-    username = models.CharField(unique=True, max_length=150)
-    first_name = models.CharField(max_length=150)
-    last_name = models.CharField(max_length=150)
-    email = models.CharField(max_length=254)
-    is_staff = models.IntegerField()
-    is_active = models.IntegerField()
-    date_joined = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user'
-
-
-class AuthUserGroups(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user_groups'
-        unique_together = (('user', 'group'),)
-
-
-class AuthUserUserPermissions(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user_user_permissions'
-        unique_together = (('user', 'permission'),)
-
-
-class Category(models.Model):
+class T2TCategory(models.Model):
     category_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'category'
+        db_table = 't2_t_category'
 
 
-class Consulanteducation(models.Model):
-    professional = models.OneToOneField('Profesionprofile', models.DO_NOTHING, primary_key=True)
-    education = models.ForeignKey('Education', models.DO_NOTHING)
+class T2TConsulanteducation(models.Model):
+    professional = models.OneToOneField('T2TProfesionprofile', models.DO_NOTHING, primary_key=True)
+    education = models.ForeignKey('T2TEducation', models.DO_NOTHING)
 
     class Meta:
         managed = False
-        db_table = 'consulanteducation'
+        db_table = 't2_t_consulanteducation'
         unique_together = (('professional', 'education'),)
 
 
-class Consultant(models.Model):
+class T2TConsultant(models.Model):
     phone = models.BigIntegerField(primary_key=True)
     email = models.CharField(max_length=255)
     firstname = models.CharField(max_length=60, blank=True, null=True)
@@ -107,92 +37,47 @@ class Consultant(models.Model):
     linkedin = models.CharField(db_column='linkedIn', max_length=255, blank=True, null=True)  # Field name made lowercase.
     twitter = models.CharField(max_length=255, blank=True, null=True)
     about_us = models.CharField(max_length=60, blank=True, null=True)
-    professional = models.ForeignKey('Profesionprofile', models.DO_NOTHING, blank=True, null=True)
+    professional = models.ForeignKey('T2TProfesionprofile', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'consultant'
+        db_table = 't2_t_consultant'
         unique_together = (('phone', 'email'),)
 
 
-class Consultantreference(models.Model):
-    professional = models.OneToOneField('Profesionprofile', models.DO_NOTHING, primary_key=True)
-    skill = models.ForeignKey('Reference', models.DO_NOTHING)
+class T2TConsultantreference(models.Model):
+    professional = models.OneToOneField('T2TProfesionprofile', models.DO_NOTHING, primary_key=True)
+    skill = models.ForeignKey('T2TReference', models.DO_NOTHING)
 
     class Meta:
         managed = False
-        db_table = 'consultantreference'
+        db_table = 't2_t_consultantreference'
         unique_together = (('professional', 'skill'),)
 
 
-class Consultantskill(models.Model):
-    professional = models.OneToOneField('Profesionprofile', models.DO_NOTHING, primary_key=True)
-    skill = models.ForeignKey('Skill', models.DO_NOTHING)
+class T2TConsultantskill(models.Model):
+    professional = models.OneToOneField('T2TProfesionprofile', models.DO_NOTHING, primary_key=True)
+    skill = models.ForeignKey('T2TSkill', models.DO_NOTHING)
 
     class Meta:
         managed = False
-        db_table = 'consultantskill'
+        db_table = 't2_t_consultantskill'
         unique_together = (('professional', 'skill'),)
 
 
-class DjangoAdminLog(models.Model):
-    action_time = models.DateTimeField()
-    object_id = models.TextField(blank=True, null=True)
-    object_repr = models.CharField(max_length=200)
-    action_flag = models.PositiveSmallIntegerField()
-    change_message = models.TextField()
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'django_admin_log'
-
-
-class DjangoContentType(models.Model):
-    app_label = models.CharField(max_length=100)
-    model = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'django_content_type'
-        unique_together = (('app_label', 'model'),)
-
-
-class DjangoMigrations(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    app = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
-    applied = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'django_migrations'
-
-
-class DjangoSession(models.Model):
-    session_key = models.CharField(primary_key=True, max_length=40)
-    session_data = models.TextField()
-    expire_date = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'django_session'
-
-
-class Education(models.Model):
+class T2TEducation(models.Model):
     education_id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=255, blank=True, null=True)
     start_date = models.DateTimeField(blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
-    institution = models.ForeignKey('Educationinstitution', models.DO_NOTHING, db_column='institution', blank=True, null=True)
+    institution = models.ForeignKey('T2TEducationinstitution', models.DO_NOTHING, db_column='institution', blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'education'
+        db_table = 't2_t_education'
 
 
-class Educationinstitution(models.Model):
+class T2TEducationinstitution(models.Model):
     name = models.CharField(primary_key=True, max_length=255)
     country = models.CharField(max_length=255, blank=True, null=True)
     state = models.CharField(max_length=255, blank=True, null=True)
@@ -200,10 +85,10 @@ class Educationinstitution(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'educationinstitution'
+        db_table = 't2_t_educationinstitution'
 
 
-class Profesionprofile(models.Model):
+class T2TProfesionprofile(models.Model):
     professional_id = models.IntegerField(primary_key=True)
     industry = models.CharField(max_length=90, blank=True, null=True)
     role = models.CharField(max_length=50, blank=True, null=True)
@@ -215,10 +100,10 @@ class Profesionprofile(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'profesionprofile'
+        db_table = 't2_t_profesionprofile'
 
 
-class Reference(models.Model):
+class T2TReference(models.Model):
     reference_id = models.IntegerField(primary_key=True)
     firstname = models.CharField(max_length=80, blank=True, null=True)
     lastname = models.CharField(max_length=80, blank=True, null=True)
@@ -228,28 +113,28 @@ class Reference(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'reference'
+        db_table = 't2_t_reference'
 
 
-class Skill(models.Model):
+class T2TSkill(models.Model):
     skill_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=60, blank=True, null=True)
     domain_level = models.CharField(max_length=40, blank=True, null=True)
-    category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True)
+    category = models.ForeignKey(T2TCategory, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'skill'
+        db_table = 't2_t_skill'
 
 
-class Workexperience(models.Model):
+class T2TWorkexperience(models.Model):
     work_id = models.IntegerField(primary_key=True)
     role = models.CharField(max_length=60, blank=True, null=True)
     company = models.CharField(max_length=60, blank=True, null=True)
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
-    professional = models.ForeignKey(Profesionprofile, models.DO_NOTHING, blank=True, null=True)
+    professional = models.ForeignKey(T2TProfesionprofile, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'workexperience'
+        db_table = 't2_t_workexperience'
