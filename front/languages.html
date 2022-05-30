@@ -17,30 +17,31 @@
             <h2>Languages</h2>
         </div>
         <div class="language">
-            <div class="input-box">
-                <span class="details">Language</span>
-                <input type="text" placeholder="Enter Language">
-            </div>
-            <div class="input-box">
-                <label for="language_level" class="details">Level</label>
-                <select name="language_level" id="language_level">
-                    <option value="Yes">Beginner</option>
-                    <option value="No">Intermediate</option>
-                    <option value="No">Proficient</option>
-                    <option value="No">Expert</option>
-                </select>
+            <div class="language-info">
+                <div class="input-box">
+                    <span class="details">Language</span>
+                    <input type="text" placeholder="Enter Language">
+                </div>
+                <div class="input-box">
+                    <label for="language_level" class="details">Level</label>
+                    <select name="language_level" id="language_level">
+                        <option value="1">Basic</option>
+                        <option value="2">Intermediate</option>
+                        <option value="3">Advanced</option>
+                    </select>
+                </div>
             </div>
         </div>
         <br>
         <div class="more">
-            <button type="button">Add one more language</button>
-            <button type="button">Remove one language</button>
-
+            <button type="button" id="remove-button">Remove one language</button>
+            <button type="button" id="add-button">Add one more language</button>
         </div>
         <br>
         <div class="button">
             <button type="button">Next</button>
         </div>
     </div>
+    <script src="js/languages.js"></script>
 </body>
 </html>

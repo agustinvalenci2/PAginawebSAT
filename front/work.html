@@ -17,38 +17,41 @@
             <h2>Work experience</h2>
         </div>
         <div class="work">
-            <div class="input-box">
-                <span class="details">Role</span>
-                <input type="text" placeholder="Enter Role" required>
+            <div class="work-info">
+                <div class="input-box">
+                    <span class="details">Role</span>
+                    <input type="text" placeholder="Enter Role" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Company</span>
+                    <input type="text" placeholder="Enter Company" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Start date</span>
+                    <input type="date" placeholder="Enter start date">
+                </div>
+                <div class="input-box">
+                    <span class="details">End date</span>
+                    <input type="date" placeholder="Enter end date">
+                </div>
             </div>
-            <div class="input-box">
-                <span class="details">Company</span>
-                <input type="text" placeholder="Enter Company" required>
-            </div>
-            <div class="input-box">
-                <span class="details">Start date</span>
-                <input type="date" placeholder="Enter start date">
-            </div>
-            <div class="input-box">
-                <span class="details">End date</span>
-                <input type="date" placeholder="Enter end date">
-            </div>
-        </div>
-        <div class="description">
-            <div class="input-box">
-                <label for="description">Description</label>
-                <textarea name="description" id="description" cols="100" rows="5" placeholder="What did you do during the time you worked here?"></textarea>
+            <div class="description">
+                <div class="input-box">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" cols="100" rows="5" placeholder="What did you do during the time you worked here?"></textarea>
+                </div>
             </div>
         </div>
         <br>
         <div class="more">
-            <button type="button">Add one more work</button>
-            <button type="button">Remove one work</button>
+            <button type="button" id="remove-button">Remove one work</button>
+            <button type="button" id="add-button">Add one more work</button>
         </div>
         <br>
         <div class="button">
             <button type="button">Next</button>
         </div>
     </div>
+    <script src="js/work.js"></script>
 </body>
 </html>

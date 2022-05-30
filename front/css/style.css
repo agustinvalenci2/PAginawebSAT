@@ -41,7 +41,7 @@
     margin-bottom: 10px;
 }
 
-.general, .social, .professional, .language, .more, .skills, .education, .work, .references{
+.general, .social, .professional, .language, .language-info, .more, .skills-info, .skills, .education, .education-info, .work, .work-info, .references{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -60,7 +60,6 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-
 }
 
 .description .input-box{
@@ -70,7 +69,7 @@
     flex-wrap: wrap;
 }
 
-.references hr{
+hr{
     max-width: 620px;
     width: 100%;
     margin-top: 15px;

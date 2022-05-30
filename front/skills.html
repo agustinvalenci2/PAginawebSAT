@@ -17,29 +17,32 @@
             <h2>Skills</h2>
         </div>
         <div class="skills">
-            <div class="input-box">
-                <span class="details">Skill</span>
-                <input type="text" placeholder="Enter Skill">
+            <div class="skills-info">
+                <div class="input-box">
+                    <span class="details">Skill</span>
+                    <input type="text" placeholder="Enter Skill">
+                </div>
+                <div class="input-box">
+                    <label for="skill_level" class="details">Level</label>
+                    <select name="skill_level" id="skill_level">
+                        <option value="Yes">Beginner</option>
+                        <option value="No">Intermediate</option>
+                        <option value="No">Proficient</option>
+                        <option value="No">Expert</option>
+                    </select>
+                </div>
             </div>
-            <div class="input-box">
-                <label for="skill_level" class="details">Level</label>
-                <select name="skill_level" id="skill_level">
-                    <option value="Yes">Beginner</option>
-                    <option value="No">Intermediate</option>
-                    <option value="No">Proficient</option>
-                    <option value="No">Expert</option>
-                </select>
-            </div>
-        </div>
+        </div>   
         <br>
         <div class="more">
-            <button type="button">Add one more skill</button>
-            <button type="button">Remove one skill</button>
+            <button type="button" id="remove-button">Remove one skill</button>
+            <button type="button" id="add-button">Add one more skill</button>
         </div>
         <br>
         <div class="button">
             <button type="button">Next</button>
         </div>
     </div>
+    <script src="js/skills.js"></script>
 </body>
 </html>
